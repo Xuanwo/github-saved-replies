@@ -1,17 +1,6 @@
-let replies = new Map([
-    ["In my humble opinion", "IMHO"],
-    ["Looks good to me", "LGTM"],
-    ["Please take a look", "PTAL"],
-    ["Sounds good to me", "SGTM"],
-    ["To be done", "TBD"],
-    ["To be reviewed", "TBR"],
-    ["Too long; didn't read", "TL;DR"],
-    ["What do you think", "WDYT"]
-]);
-
 let authenticity_token = document.querySelector("#new_saved_reply > input[type=hidden]").value;
 
-for (const [title, body] of replies) {
+function create_reply(token, title, body) {
     fetch("https://github.com/settings/replies", {
         "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -29,11 +18,19 @@ for (const [title, body] of replies) {
         },
         "referrer": "https://github.com/settings/replies",
         "referrerPolicy": "strict-origin-when-cross-origin",
-        "body": `authenticity_token=${authenticity_token}&title=${title}&saved_reply_id=&body=${body}&path=&line=&start_line=&preview_side=&preview_start_side=&start_commit_oid=&end_commit_oid=&base_commit_oid=&comment_id=`,
+        "body": `authenticity_token=${token}&title=${title}&saved_reply_id=&body=${body}&path=&line=&start_line=&preview_side=&preview_start_side=&start_commit_oid=&end_commit_oid=&base_commit_oid=&comment_id=`,
         "method": "POST",
         "mode": "cors",
         "credentials": "include"
     });
+
+    console.log(`Reply ${title} has been created`);
 }
 
-console.log("Github Saved Replied has been updated")
+function create_replies(replies) {
+    for (const [title, body] of replies) {
+        create_reply(authenticity_token, title, body);
+    }
+}
+
+export {create_replies}

@@ -2,10 +2,16 @@
   "name": "github-saved-replies",
   "version": "0.1.0",
   "description": "Create and maintain github save replies",
-  "main": "index.js",
   "scripts": {
+    "build_abbr": "webpack ./abbr.js --output-filename abbr.js --mode production",
+    "build_full": "webpack ./full.js --output-filename full.js --mode production",
+    "build": "npm run build_abbr && npm run build_full",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xuanwo",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
 }
