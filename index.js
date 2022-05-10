@@ -1,12 +1,12 @@
 let replies = new Map([
-    ["IMHO", "In my humble opinion"],
-    ["LGTM", "Looks good to me"],
-    ["PTAL", "Please take a look"],
-    ["SGTM", "Sounds good to me"],
-    ["TBD", "To be done"],
-    ["TBR", "To be reviewed"],
-    ["TL;DR", "Too long; didn't read"],
-    ["WDYT", "What do you think"]
+    ["In my humble opinion", "IMHO"],
+    ["Looks good to me", "LGTM"],
+    ["Please take a look", "PTAL"],
+    ["Sounds good to me", "SGTM"],
+    ["To be done", "TBD"],
+    ["To be reviewed", "TBR"],
+    ["Too long; didn't read", "TL;DR"],
+    ["What do you think", "WDYT"]
 ]);
 
 let authenticity_token = document.querySelector("#new_saved_reply > input[type=hidden]").value;
